@@ -1,0 +1,75 @@
+lass Baby:
+
+  age = 0
+  num_babys = 0
+
+
+  def __init__(self, name: str, ghad: int, vazn: int, dor_sar: int, gender: str, zayman = 'tabiee', salem = True) -> None:
+    '''Etelaat avalieh az nozad'''
+    self.name = name
+    self.ghad = ghad
+    self.vazn = vazn
+    self.dor_sar = dor_sar
+    self.gender = gender
+    self.zayman = zayman
+    #attribute name is not == arge name
+    self.is_salem = salem
+
+    Baby.num_babys += 1
+  
+  def print_info(self):
+    if self.gender == 'male' and self.is_salem:
+      print(f'Agha {self.name} ma ba vazn {self.vazn} va ghad {self.ghad} {self.zayman} be donya omad va saleme :) .')
+    elif self.gender == 'male' and not self.is_salem:
+      print(f'Agha {self.name} ma ba vazn {self.vazn} va ghad {self.ghad} {self.zayman} be donya omad va salem nist :/ ')
+    elif self.gender == 'female' and self.is_salem:
+      print(f'dokhtarm {self.name} ba vazn {self.vazn} va ghad {self.ghad} {self.zayman} be donya omad va saleme :) ')
+    elif self.gender == 'female' and not self.is_salem:
+      print(f'dokhtarm {self.name} ba vazn {self.vazn} va ghad {self.ghad} {self.zayman} be donya omad va saleme nist :/ ')
+    else:
+      print('eteleaat ghalat')
+
+    #print(f"age of {self.name} is : {self.age}")
+  
+
+  def get_babys_family_name(self, num_of_family):
+    '''nam e famili ke be did dar nozad amadand ra migirad va dar akhar chap mikonad'''
+
+    self.family_name = []
+
+    for i in range(num_of_family):
+      name = input(f'get the #{i+1} name : ')
+      self.family_name.append(name)
+
+    full_info_family = {}
+    for name in self.family_name:
+      full_info_family[name] = {}
+
+    # Quantify Instance attributs : a list for names and a dict for names and maby more information later!
+    #self.family_name = family_list
+    self.family_info = full_info_family
+    
+    print(f"{self.family_name} be did dar nozad amadand va :")
+    self.print_info()
+    
+  def get_babys_family_info(self , name: str):
+    '''Etelaate bishtar as famil mesle :
+    tel , last name , email ya har chiz dige...''' 
+    while True:
+      if self.family_info[name]:
+        key = input('what do you want to get (or enter to end...): ')
+        if key is not '':
+          value = input('get the info...: ')
+          self.family_info[name][key] = value
+        else:
+          break
+      else:
+        self.family_info[name] = {}
+        key = input('what do you want to get (or enter to end...): ')
+        if key is not '':
+          value = input(f'get the {key} of {name}...: ')
+          self.family_info[name][key] = value
+        else:
+          break
+
+
